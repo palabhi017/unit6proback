@@ -55,4 +55,17 @@ cartRouter.delete("/delete/:id", async(req,res)=>{
 
 })
 
+cartRouter.delete("/deleteall/:id", async(req,res)=>{
+    try {
+        const id = req.params.id
+        const new_data = await cartModel.deleteMany({userID:id})
+        res.status(200).json({"massage":"Data Deleted successfully"})
+    } catch (error) {
+         res.status(400).json({"err":"bad request"})  
+    }
+
+})
+
+
+
 module.exports = {cartRouter}
